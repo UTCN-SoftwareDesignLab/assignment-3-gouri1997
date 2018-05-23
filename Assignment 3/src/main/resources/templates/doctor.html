@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Doctor Page</title>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+    <script src="js/doctorTemplate.js"></script>
+    <style>
+        td {
+            width: 200px;
+        }
+
+        th {
+            text-align: left;
+        }
+
+        table, th, td {
+            border-collapse: collapse;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body onload = "connect()" onunload = "disconnect()">
+
+<a th:href="@{/logout}">Logout</a>
+
+<h1>Consultations:</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>Patient</th>
+        <th>Date</th>
+        <th>Diagnosis</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+</table>
+
+<hr/>
+
+<form>
+    Patient:
+    <select name="patient" id="patientUpdate">
+        <option th:each="patient : ${PatientsDoc}" th:value="${patient.id}" th:text="${patient.name}"></option>
+    </select>
+    Diagnosis: <input type="text" id="diagnosisUpdate"/>
+    <button id="buttonUpdate">Update</button>
+</form>
+
+<hr/>
+
+<form>
+    <output type="text" id="messageSent"/>
+</form>
+
+</body>
+</html>

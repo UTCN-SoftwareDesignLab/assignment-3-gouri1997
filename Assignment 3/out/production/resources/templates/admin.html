@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Page</title>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="js/adminTemplate.js"></script>
+    <style>
+        td {
+            width: 200px;
+        }
+
+        th {
+            text-align: left;
+        }
+
+        table, th, td {
+            border-collapse: collapse;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<a th:href="@{/logout}">Logout</a>
+
+<h1>Patients:</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>Username</th>
+        <th>Password</th>
+        <th>Role</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+</table>
+
+<hr/>
+
+<form>
+    Username: <input type="text" id="usernameCreate"/>
+    Password: <input type="text" id="passwordCreate"/>
+    Role: <input type="text" id="roleCreate"/>
+    <button id="buttonCreate">Create</button>
+</form>
+
+<hr/>
+
+<form>
+    Username:
+    <select name="username" id="usernameUpdate">
+    <option th:each="username : ${Users}" th:value="${username.username}" th:text="${username.username}"></option>
+    </select>
+    Password: <input type="text" id="passwordUpdate"/>
+    Role: <input type="text" id="roleUpdate"/>
+    <button id="buttonUpdate">Update</button>
+</form>
+
+<hr/>
+
+<form>
+    Username:
+    <select name="username" id="idDelete">
+        <option th:each="username : ${Users}" th:value="${username.username}" th:text="${username.username}"></option>
+    </select>
+    <button id="buttonDelete">Delete</button>
+</form>
+
+</body>
+</html>
